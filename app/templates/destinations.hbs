@@ -1,0 +1,23 @@
+<div class='destination-list'>
+  <h3>Destinations</h3>
+
+  <p>
+    <a href='#' {{action 'createDestination'}}>New Destination</a>
+  </p>
+
+  <ul>
+    {{#each destination in model}}
+      <li>
+        {{link-to destination.name 'destination' destination}}
+
+        (created {{ago destination.created_at}})
+
+        <a href='#' {{action 'deleteDestination' destination}} class='delete-link' data-confirm='Are you sure?'>delete</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div class='destination'>
+  {{outlet}}
+</div>
