@@ -1,6 +1,12 @@
 `import Ember from "ember";`
 
 DestinationsController = {
+  init: ->
+    @_super()
+    client = new Faye.Client('http://localhost:3000/faye')
+    client.subscribe '/destinations', (destination) =>
+      @store.push('destination', JSON.parse(destination))
+
   actions:
     createDestination: ->
       destination = @store.createRecord('destination', name: 'New destination')
