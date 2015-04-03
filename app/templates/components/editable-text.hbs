@@ -1,0 +1,5 @@
+{{#if isEditing}}
+  {{focus-input value=value focus-out='doneEditing'}}
+{{else}}
+  <span {{action 'edit'}}>{{value}}</span>
+{{/if}}
