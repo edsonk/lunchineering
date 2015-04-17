@@ -6,6 +6,7 @@ Router = Ember.Router.extend
 
 Router.map ->
   @route 'about'
+  @route 'login'
   @resource 'destinations', ->
     @resource 'destination', path: '/:destination_id'
 

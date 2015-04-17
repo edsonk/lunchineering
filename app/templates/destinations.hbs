@@ -12,7 +12,9 @@
 
         (created {{ago destination.created_at}})
 
-        <a href='#' {{action 'deleteDestination' destination}} class='delete-link' data-confirm='Are you sure?'>delete</a>
+        {{#if session.isAuthenticated}}
+          <a href='#' {{action 'deleteDestination' destination}} class='delete-link' data-confirm='Are you sure?'>delete</a>
+        {{/if}}
       </li>
     {{/each}}
   </ul>
