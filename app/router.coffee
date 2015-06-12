@@ -9,5 +9,7 @@ Router.map ->
   @route 'login'
   @resource 'destinations', ->
     @resource 'destination', path: '/:destination_id'
+  @resource 'events', ->
+    @resource 'event', path: '/:event_id'
 
 `export default Router;`

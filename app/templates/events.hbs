@@ -1,0 +1,21 @@
+<div class='resource-list-panel'>
+  <h3>Past Events</h3>
+
+  <p>
+    <a href='#' {{action 'createEvent'}}>New Event</a>
+  </p>
+
+  <ul>
+    {{#each event in model}}
+      <li>
+        {{#link-to 'event' event}}
+          {{ago event.created_at}}
+        {{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div class='resource-panel'>
+  {{outlet}}
+</div>

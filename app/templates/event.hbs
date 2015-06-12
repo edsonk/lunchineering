@@ -1,0 +1,8 @@
+<h3>Event {{model.id}} ({{moment model.created_at}})</h3>
+
+<ul>
+  {{#each destination_option in model.destination_options}}
+    {{selectable-item name='destination' value=destination_option.destination_id action='vote'}}
+    <label>{{destination_option.destination.name}}</label>
+  {{/each}}
+</ul>
