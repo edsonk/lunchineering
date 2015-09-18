@@ -20,6 +20,7 @@ module.exports = function(environment) {
 
     'simple-auth': {
     //   serverTokenRevocationEndpoint: '/revoke'
+      crossOriginWhitelist: ['http://localhost:3000'],
       authorizer: 'simple-auth-authorizer:devise'
     }
   };
@@ -32,7 +33,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicy = {
       'connect-src': "'self' http://localhost:3000 ws://localhost:3000",
-      'script-src': "'self' 'unsafe-eval' http://localhost:3000"
+      'script-src': "'self' 'unsafe-eval' http://localhost:3000",
+      'img-src': "'self' data:"
     }
   }
 
