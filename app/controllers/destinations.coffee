@@ -1,11 +1,16 @@
 `import Ember from "ember";`
 
 DestinationsController = {
-  init: ->
-    @_super()
-    client = new Faye.Client('http://localhost:3000/faye')
-    client.subscribe '/destinations', (destination) =>
-      @store.pushPayload('destination', destination)
+  cableService: Ember.inject.service('cable')
+
+  setupSubscription: Ember.on 'init', ->
+    consumer = @get('cableService').createConsumer('ws://localhost:3000/cable')
+
+    subscription = consumer.subscriptions.create 'DestinationsChannel',
+      received: (destination) =>
+        @store.pushPayload('destination', destination)
+
+    # this.set('subscription', subscription)
 
   actions:
     createDestination: ->

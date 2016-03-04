@@ -1,11 +1,14 @@
 `import Ember from "ember";`
 
 EventController = {
-  init: ->
-    @_super()
-    client = new Faye.Client('http://localhost:3000/faye')
-    client.subscribe '/event_votes', (vote) =>
-      @store.pushPayload('event_vote', vote)
+  cableService: Ember.inject.service('cable')
+
+  setupSubscription: Ember.on 'init', ->
+    consumer = @get('cableService').createConsumer('ws://localhost:3000/cable')
+
+    subscription = consumer.subscriptions.create 'EventVotesChannel',
+      received: (vote) =>
+        @store.pushPayload('event_vote', vote)
 
   actions:
     vote: (option) ->
