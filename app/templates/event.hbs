@@ -1,8 +1,28 @@
-<h3>Event {{model.id}} ({{moment model.created_at}})</h3>
+<div class='event'>
+  <h3>Event {{model.id}} ({{moment-format model.created_at}})</h3>
 
-<ul>
-  {{#each destination_option in model.destination_options}}
-    {{selectable-item name='destination' value=destination_option.destination_id action='vote'}}
-    <label>{{destination_option.destination.name}}</label>
-  {{/each}}
-</ul>
+  {{#if model.event.isClosed}}
+    <h4>Voting is closed! And the winner is:</h4>
+
+    <p class='winner'>{{model.event.selectedDestinationName}}</p>
+
+    <p>Your Vote: {{model.currentVote.destinationName}}</p>
+  {{else}}
+    <p class='time-remaining'>
+      Time Remaining: {{countdown-timer time=model.event.expires_at}}
+    </p>
+
+    {{#each model.event.destination_options as |destination_option|}}
+      {{
+        selectable-item
+          name=destination_option.destinationName
+          value=destination_option
+          count=destination_option.voteCount
+          selected=destination_option.selected
+          action='vote'
+      }}
+    {{/each}}
+
+    <p>Current Vote: {{model.currentVote.destinationName}}</p>
+  {{/if}}
+</div>

@@ -8,7 +8,7 @@ EventsController = {
       onSuccess = (event) =>
         @transitionToRoute('event', event)
       onFail = (event) =>
-        alert('Nope!')
+        alert('Error: something went wrong :(')
 
       event.save().then(onSuccess, onFail)
 }

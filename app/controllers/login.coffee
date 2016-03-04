@@ -1,15 +1,14 @@
 `import Ember from "ember";`
 
 LoginController = {
+  session: Ember.inject.service('session')
+
   actions:
     authenticate: ->
-      controller = @
-      @get('session').authenticate('simple-auth-authenticator:devise', @_authData())
+      # controller = @
+      @get('session').authenticate('authenticator:devise', @get('identification'), @get('password'))
       # .then ->
       #   controller.get('previousTransition')?.retry() || controller.transitionToRoute('index')
-
-  _authData: ->
-    @getProperties('identification', 'password')
 }
 
 `export default Ember.Controller.extend(LoginController);`

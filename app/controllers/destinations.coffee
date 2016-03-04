@@ -5,7 +5,7 @@ DestinationsController = {
     @_super()
     client = new Faye.Client('http://localhost:3000/faye')
     client.subscribe '/destinations', (destination) =>
-      @store.push('destination', JSON.parse(destination))
+      @store.pushPayload('destination', destination)
 
   actions:
     createDestination: ->

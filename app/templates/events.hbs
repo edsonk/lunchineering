@@ -6,10 +6,10 @@
   </p>
 
   <ul>
-    {{#each event in model}}
+    {{#each model as |event|}}
       <li>
-        {{#link-to 'event' event}}
-          {{ago event.created_at}}
+        {{#link-to 'event' event.id}}
+          {{moment-from-now event.created_at}}
         {{/link-to}}
       </li>
     {{/each}}

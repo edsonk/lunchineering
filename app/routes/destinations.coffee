@@ -2,7 +2,7 @@
 
 DestinationsRoute = Ember.Route.extend(
   model: ->
-    @store.find('destination')
+    @store.findAll('destination')
 )
 
 `export default DestinationsRoute`

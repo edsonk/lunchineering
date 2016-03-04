@@ -6,11 +6,11 @@
   </p>
 
   <ul>
-    {{#each destination in model}}
+    {{#each model as |destination|}}
       <li>
         {{link-to destination.name 'destination' destination}}
 
-        (created {{ago destination.created_at}})
+        (created {{moment-from-now destination.created_at}})
 
         {{#if session.isAuthenticated}}
           <a href='#' {{action 'deleteDestination' destination}} class='delete-link' data-confirm='Are you sure?'>delete</a>

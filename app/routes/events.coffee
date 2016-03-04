@@ -2,7 +2,7 @@
 
 EventsRoute = Ember.Route.extend(
   model: ->
-    @store.find('event')
+    @store.findAll('event')
 )
 
 `export default EventsRoute`

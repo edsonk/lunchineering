@@ -7,9 +7,9 @@ Router = Ember.Router.extend
 Router.map ->
   @route 'about'
   @route 'login'
-  @resource 'destinations', ->
-    @resource 'destination', path: '/:destination_id'
-  @resource 'events', ->
-    @resource 'event', path: '/:event_id'
+  @route 'destinations', ->
+    @route 'destination', resetNamespace: true, path: '/:destination_id'
+  @route 'events', ->
+    @route 'event', resetNamespace: true, path: '/:event_id'
 
 `export default Router;`
