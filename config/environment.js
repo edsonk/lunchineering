@@ -21,7 +21,7 @@ module.exports = function(environment) {
     'simple-auth': {
     //   serverTokenRevocationEndpoint: '/revoke'
       crossOriginWhitelist: ['http://localhost:3000'],
-      authorizer: 'simple-auth-authorizer:devise'
+      session: 'simple-auth-authorizer:devise'
     }
   };
 
