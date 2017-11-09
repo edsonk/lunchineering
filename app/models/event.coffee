@@ -1,19 +1,23 @@
-`import DS from 'ember-data';`
+`import BaseModel from './base-model';`
 
 attr = DS.attr
 
-Event = DS.Model.extend
+Event = BaseModel.extend
   destination_options: DS.hasMany('destination_options')
   created_at: attr('date')
   expires_at: attr('date')
   state: attr()
 
+  delegations: [
+    ['destinationName', 'test', to: 'selectedDestinationOption', prefix: 'selected']
+  ]
+
   isClosed: Ember.computed 'state', ->
     @get('state') == 'closed'
 
-  selectedDestination: Ember.computed 'destination_options.@each.selected', ->
+  selectedDestinationOption: Ember.computed 'destination_options.@each.selected', ->
     @get('destination_options').findBy('selected', true)
 
-  selectedDestinationName: Ember.computed.alias('selectedDestination.destinationName')
+  selectedDestinationName: Ember.computed.alias('selectedDestinationOption.destinationName')
 
 `export default Event`
